@@ -18,6 +18,11 @@ export async function sendLeadEmail(payload: LeadPayload) {
     return;
   }
 
+  if (process.env.MOCK_EMAIL_MODE === "true") {
+    console.log("MOCK_EMAIL_MODE enabled. Lead payload:", payload);
+    return;
+  }
+
   if (!hasSmtpEnv()) {
     console.log("Lead email (SMTP not configured)", payload);
     return;

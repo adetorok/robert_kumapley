@@ -23,8 +23,12 @@ export async function POST(req: Request) {
   const subject = `New ${intent} inquiry for Robert`;
   const body = formatLeadBody(data);
 
-  await sendLeadEmail({ to: recipient, subject, body });
-  await forwardToZapier({ intent, ...data });
+  if (process.env.MOCK_EMAIL_MODE === "true") {
+    console.log("MOCK_EMAIL_MODE enabled. Skipping outbound send.", { intent, recipient, body });
+  } else {
+    await sendLeadEmail({ to: recipient, subject, body });
+    await forwardToZapier({ intent, ...data });
+  }
 
   return NextResponse.json({ ok: true, message: "Thanks! We will follow up." });
 }
