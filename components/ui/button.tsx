@@ -27,25 +27,32 @@ const buttonStyles = cva(
   },
 );
 
-type ButtonBaseProps = VariantProps<typeof buttonStyles> & {
+type ButtonBaseProps = {
+  variant?: VariantProps<typeof buttonStyles>["variant"] | (string & {});
+  size?: VariantProps<typeof buttonStyles>["size"];
   children: React.ReactNode;
   className?: string;
 };
 
 type ButtonProps = ButtonBaseProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
-type LinkButtonProps = ButtonBaseProps & { href: string };
+type LinkButtonProps = ButtonBaseProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+  };
 
 export function Button({ variant, size, className, children, ...rest }: ButtonProps) {
+  const styles = buttonStyles({ variant: variant as VariantProps<typeof buttonStyles>["variant"], size });
   return (
-    <button className={cn(buttonStyles({ variant, size }), className)} {...rest}>
+    <button className={cn(styles, className)} {...rest}>
       {children}
     </button>
   );
 }
 
-export function LinkButton({ variant, size, className, children, href }: LinkButtonProps) {
+export function LinkButton({ variant, size, className, children, href, target, rel, ...rest }: LinkButtonProps) {
+  const styles = buttonStyles({ variant: variant as VariantProps<typeof buttonStyles>["variant"], size });
   return (
-    <Link className={cn(buttonStyles({ variant, size }), className)} href={href}>
+    <Link className={cn(styles, className)} href={href} target={target} rel={rel} {...rest}>
       {children}
     </Link>
   );
