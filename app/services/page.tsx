@@ -17,8 +17,8 @@ export default function ServicesPage() {
         title={servicesContent.header.title}
         subtitle={servicesContent.header.subtitle}
         ctas={[
-          { label: "Request Advisory Consult", href: "#inquiry", variant: "primary" },
-          { label: "Book a Talk", href: "/speaking#booking", variant: "secondary" },
+          { label: "Request Advisory Consult", href: "/hire#advisory-form", variant: "primary" },
+          { label: "Book a Talk", href: "/hire#speaking-form", variant: "secondary" },
         ]}
       />
 
@@ -52,7 +52,17 @@ export default function ServicesPage() {
                   </ul>
                 </div>
               )}
-              <LinkButton href={track.id === "speaking" ? "/speaking#booking" : "#inquiry"}>{track.cta}</LinkButton>
+              <LinkButton
+                href={
+                  track.id === "speaking"
+                    ? "/hire#speaking-form"
+                    : track.id === "mentorship"
+                      ? "/hire#mentorship-form"
+                      : "/hire#advisory-form"
+                }
+              >
+                {track.cta}
+              </LinkButton>
             </div>
           ))}
         </div>

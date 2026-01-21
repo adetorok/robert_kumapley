@@ -2,12 +2,14 @@
 import { useMemo, useState } from "react";
 import { formsContent } from "@/content/content";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export function MultiStepForm() {
   const steps = formsContent.multistep.steps;
   const [current, setCurrent] = useState(0);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [data, setData] = useState<Record<string, string | boolean>>({});
+  const router = useRouter();
 
   const isLast = current === steps.length - 1;
 
@@ -26,6 +28,11 @@ export function MultiStepForm() {
         body: JSON.stringify({ intent: data.intent ?? "Other", ...data }),
       });
       setStatus("success");
+      // Optional redirect based on intent if provided.
+      const intent = (data.intent as string | undefined)?.toLowerCase();
+      if (intent === "advisory" || intent === "speaking" || intent === "mentorship") {
+        router.push(`/thanks?type=${intent}`);
+      }
     } catch (error) {
       console.error(error);
       setStatus("error");
@@ -34,9 +41,20 @@ export function MultiStepForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6">
-        <p className="text-lg font-semibold text-white">Thank you</p>
-        <p className="text-white/70">{formsContent.thankYou}</p>
+      <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6" id="contact-form">
+        <p className="text-lg font-semibold text-white">Thanks — we’ll get back to you shortly.</p>
+        <p className="text-white/70">If this is time-sensitive, please use the scheduling link.</p>
+        <Button
+          className="mt-4"
+          variant="secondary"
+          onClick={() => {
+            setStatus("idle");
+            setCurrent(0);
+            setData({});
+          }}
+        >
+          Submit another request
+        </Button>
       </div>
     );
   }
@@ -44,7 +62,7 @@ export function MultiStepForm() {
   const step = steps[current];
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6 space-y-4">
+    <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6 space-y-4" id="contact-form">
       <div className="h-1.5 w-full rounded-full bg-white/10">
         <div className="h-full rounded-full bg-accent-500" style={{ width: `${progress}%` }} />
       </div>

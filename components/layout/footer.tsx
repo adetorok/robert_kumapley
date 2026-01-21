@@ -27,9 +27,9 @@ export function Footer() {
             <h4 className="mb-2 font-semibold text-white">Resources</h4>
             <div className="space-y-2">
               {resourcesContent.featured.slice(0, 4).map((res) => (
-                <Link key={res.href} href={res.href} className="block hover:text-white" target="_blank">
+                <a key={res.href} href={res.href} className="block hover:text-white" target="_blank" rel="noreferrer">
                   {res.label}
-                </Link>
+                </a>
               ))}
             </div>
           </div>

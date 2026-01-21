@@ -22,7 +22,11 @@ export default function HomePage() {
         title={homeContent.hero.nameLine}
         subtitle={homeContent.hero.title}
         description={homeContent.hero.subtitle}
-        ctas={homeContent.hero.ctas}
+        ctas={[
+          { label: "Request Advisory Consult", href: "/hire#advisory-form", variant: "primary" },
+          { label: "Book a Talk", href: "/hire#speaking-form", variant: "secondary" },
+          { label: "Apply for Mentorship", href: "/hire#mentorship-form", variant: "ghost" },
+        ]}
         credibility={homeContent.hero.credibilityStrip}
       />
 

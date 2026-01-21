@@ -5,7 +5,6 @@ import { TopicsList } from "@/components/sections/topics-list";
 import { LeadForm } from "@/components/forms/lead-form";
 import { LinkButton } from "@/components/ui/button";
 import { ConferenceOutreach } from "@/components/conference-outreach";
-import SpeakingMDX from "@/content/speaking.mdx";
 
 export const metadata: Metadata = {
   title: "Speaking | Robert Kumapley",
@@ -27,12 +26,6 @@ export default function SpeakingPage() {
         />
 
       <TopicsList topics={speakingContent.topics} title="Topics" />
-
-      <section className="px-6">
-        <div className="mx-auto max-w-6xl rounded-2xl border border-white/10 bg-white/5 p-8 shadow-soft">
-          <SpeakingMDX />
-        </div>
-      </section>
 
       <section className="px-6">
         <div className="mx-auto max-w-6xl rounded-2xl border border-white/10 bg-white/5 p-8 shadow-soft">
@@ -106,7 +99,7 @@ export default function SpeakingPage() {
               Speaking form routes directly to the speaking inbox. Add event details for faster turnaround.
             </p>
           </div>
-          <LeadForm formKey="speaking" intent="Speaking" />
+          <LeadForm formKey="speaking" intent="Speaking" anchorId="speaking-form" redirectType="speaking" />
         </div>
       </section>
     </div>

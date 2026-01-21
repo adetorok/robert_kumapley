@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { aboutContent, testimonials } from "@/content/content";
 import { Hero } from "@/components/sections/hero";
 import { Timeline } from "@/components/sections/timeline";
-import AboutMDX from "@/content/about.mdx";
 
 export const metadata: Metadata = {
   title: "About Robert Kumapley",
@@ -19,10 +19,37 @@ export default function AboutPage() {
         subtitle={aboutContent.heroBio}
         description="Leadership narrative across EAM/CMMS transformation, operational excellence, sustainability, and digital enablement."
         ctas={[
-          { label: "Hire Robert", href: "/services#inquiry", variant: "primary" },
-          { label: "Book a Talk", href: "/speaking#booking", variant: "secondary" },
+          { label: "Hire Robert", href: "/hire#advisory-form", variant: "primary" },
+          { label: "Book a Talk", href: "/hire#speaking-form", variant: "secondary" },
         ]}
       />
+
+      <section className="px-6">
+        <div className="mx-auto grid max-w-6xl gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-soft md:grid-cols-2">
+          <div className="space-y-3">
+            <h3 className="text-xl font-semibold text-white">Headshot</h3>
+            <p className="text-white/70">High-level profile imagery for speaker kit and press.</p>
+            <Image
+              src="/images/robert-headshot.jpg"
+              alt="Robert Kumapley headshot"
+              width={640}
+              height={640}
+              className="rounded-xl border border-white/10 object-cover"
+            />
+          </div>
+          <div className="space-y-3">
+            <h3 className="text-xl font-semibold text-white">Full-length</h3>
+            <p className="text-white/70">Full-body image placeholder for event collateral.</p>
+            <Image
+              src="/images/robert-full.jpg"
+              alt="Robert Kumapley full length"
+              width={640}
+              height={960}
+              className="rounded-xl border border-white/10 object-cover"
+            />
+          </div>
+        </div>
+      </section>
 
       <section className="px-6">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
@@ -48,12 +75,6 @@ export default function AboutPage() {
               ))}
             </ul>
           </div>
-        </div>
-      </section>
-
-      <section className="px-6">
-        <div className="mx-auto max-w-5xl rounded-2xl border border-white/10 bg-white/5 p-8 shadow-soft">
-          <AboutMDX />
         </div>
       </section>
 

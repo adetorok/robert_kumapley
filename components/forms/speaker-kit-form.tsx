@@ -3,8 +3,12 @@ import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { formsContent } from "@/content/content";
 
-export function SpeakerKitForm() {
+import { useRouter } from "next/navigation";
+
+export function SpeakerKitForm({ anchorId, redirectType }: { anchorId?: string; redirectType?: string }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [formKey, setFormKey] = useState(0);
+  const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -26,6 +30,9 @@ export function SpeakerKitForm() {
         body: JSON.stringify(payload),
       });
       setStatus("success");
+      if (redirectType) {
+        router.push(`/thanks?type=${redirectType}`);
+      }
     } catch (error) {
       console.error(error);
       setStatus("error");
@@ -34,15 +41,30 @@ export function SpeakerKitForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6 text-white">
-        <p className="text-lg font-semibold">Request received</p>
-        <p className="text-white/70">{formsContent.thankYou}</p>
+      <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6 text-white" id={anchorId}>
+        <p className="text-lg font-semibold">Thanks — we’ll get back to you shortly.</p>
+        <p className="text-white/70">If this is time-sensitive, please use the scheduling link.</p>
+        <Button
+          className="mt-4"
+          variant="secondary"
+          onClick={() => {
+            setStatus("idle");
+            setFormKey((k) => k + 1);
+          }}
+        >
+          Submit another request
+        </Button>
       </div>
     );
   }
 
   return (
-    <form action={handleSubmit} className="space-y-4 rounded-2xl border border-white/10 bg-ink-900/60 p-6">
+    <form
+      key={formKey}
+      onSubmit={handleSubmit}
+      className="space-y-4 rounded-2xl border border-white/10 bg-ink-900/60 p-6"
+      id={anchorId}
+    >
       {["fullName", "organization", "email", "audience"].map((name) => (
         <div key={name} className="space-y-2">
           <label className="block text-sm font-semibold text-white capitalize" htmlFor={name}>

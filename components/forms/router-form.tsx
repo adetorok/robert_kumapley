@@ -25,7 +25,7 @@ export function ContactRouterForm() {
           </button>
         ))}
       </div>
-      <LeadForm formKey={active} intent={tabLabel(active)} />
+      <LeadForm formKey={active} intent={tabLabel(active)} anchorId={`${tabLabel(active).toLowerCase()}-form`} redirectType={redirectTypeFor(tabLabel(active))} />
     </div>
   );
 }
@@ -34,4 +34,11 @@ function tabLabel(key: (typeof tabs)[number]["key"]) {
   if (key === "advisory") return "Advisory";
   if (key === "speaking") return "Speaking";
   return "Mentorship";
+}
+
+function redirectTypeFor(label: string) {
+  if (label === "Advisory") return "advisory";
+  if (label === "Speaking") return "speaking";
+  if (label === "Mentorship") return "mentorship";
+  return undefined;
 }

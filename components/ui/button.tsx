@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
@@ -51,8 +52,22 @@ export function Button({ variant, size, className, children, ...rest }: ButtonPr
 
 export function LinkButton({ variant, size, className, children, href, target, rel, ...rest }: LinkButtonProps) {
   const styles = buttonStyles({ variant: variant as VariantProps<typeof buttonStyles>["variant"], size });
+  const isExternal = href.startsWith("http");
+  if (isExternal) {
+    return (
+      <a
+        className={cn(styles, className)}
+        href={href}
+        target={target ?? "_blank"}
+        rel={rel ?? "noreferrer"}
+        {...rest}
+      >
+        {children}
+      </a>
+    );
+  }
   return (
-    <Link className={cn(styles, className)} href={href} target={target} rel={rel} {...rest}>
+    <Link className={cn(styles, className)} href={href as Route} target={target} rel={rel} {...rest}>
       {children}
     </Link>
   );

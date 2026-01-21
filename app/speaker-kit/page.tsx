@@ -71,7 +71,7 @@ export default function SpeakerKitPage() {
             </ul>
           </div>
           <div>
-            <SpeakerKitForm />
+            <SpeakerKitForm anchorId="speaker-kit-form" redirectType="speaker-kit" />
           </div>
         </div>
       </section>

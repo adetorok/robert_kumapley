@@ -1,3 +1,4 @@
+import type { Route } from "next";
 export const brand = {
   fullName: "Robert (Kwasi) Kumapley",
   credentials: ["PE", "MASCE", "LEED AP"],
@@ -13,7 +14,7 @@ export const brand = {
   },
 };
 
-export const navLinks = [
+export const navLinks: { href: Route; label: string }[] = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/speaking", label: "Speaking" },
@@ -24,10 +25,10 @@ export const navLinks = [
 ];
 
 export const ctaLinks = {
-  hire: { label: "Hire Robert", href: "/services#inquiry" },
-  bookTalk: { label: "Book a Talk", href: "/speaking#booking" },
-  requestConsult: { label: "Request Advisory Consult", href: "/services#inquiry" },
-  applyMentorship: { label: "Apply for Mentorship", href: "/contact#mentorship" },
+  hire: { label: "Hire Robert", href: "/hire#advisory-form" as Route },
+  bookTalk: { label: "Book a Talk", href: "/hire#speaking-form" as Route },
+  requestConsult: { label: "Request Advisory Consult", href: "/hire#advisory-form" as Route },
+  applyMentorship: { label: "Apply for Mentorship", href: "/hire#mentorship-form" as Route },
 };
 
 export const trustTags = [
@@ -43,9 +44,9 @@ export const homeContent = {
     subtitle:
       "Enterprise transformation • EAM/CMMS (Maximo) • Data governance • Lifecycle optimization • Sustainability • Digital enablement",
     ctas: [
-      { label: "Request Advisory Consult", href: "/services#inquiry", variant: "primary" },
-      { label: "Book a Talk", href: "/speaking#booking", variant: "secondary" },
-      { label: "Apply for Mentorship", href: "/contact#mentorship", variant: "ghost" },
+      { label: "Request Advisory Consult", href: "/hire#advisory-form", variant: "primary" as const },
+      { label: "Book a Talk", href: "/hire#speaking-form", variant: "secondary" as const },
+      { label: "Apply for Mentorship", href: "/hire#mentorship-form", variant: "ghost" as const },
     ],
     credibilityStrip: "Public sector transformation • EAM/CMMS • Data governance • Digital twins • Sustainability",
   },
@@ -95,17 +96,17 @@ export const homeContent = {
     {
       title: "Enterprise Advisory",
       description: "Project initiatives, enterprise roadmaps, transformation support",
-      cta: { label: "Request Advisory Consult", href: "/services#inquiry" },
+      cta: { label: "Request Advisory Consult", href: "/hire#advisory-form" },
     },
     {
       title: "Speaking / Talks",
       description: "Keynotes, panels, private seminars, executive briefings",
-      cta: { label: "Book a Talk", href: "/speaking#booking" },
+      cta: { label: "Book a Talk", href: "/hire#speaking-form" },
     },
     {
       title: "Business Mentorship",
       description: "Leadership coaching for infrastructure and transformation professionals",
-      cta: { label: "Apply for Mentorship", href: "/contact#mentorship" },
+      cta: { label: "Apply for Mentorship", href: "/hire#mentorship-form" },
     },
   ],
   spotlight: {

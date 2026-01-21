@@ -11,8 +11,22 @@ type Field = {
   options?: string[];
 };
 
-export function LeadForm({ formKey, intent }: { formKey: "advisory" | "speaking" | "mentorship"; intent: string }) {
+import { useRouter } from "next/navigation";
+
+export function LeadForm({
+  formKey,
+  intent,
+  anchorId,
+  redirectType,
+}: {
+  formKey: "advisory" | "speaking" | "mentorship";
+  intent: string;
+  anchorId?: string;
+  redirectType?: "advisory" | "speaking" | "mentorship" | "contact";
+}) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const router = useRouter();
+  const [formKeyed, setFormKeyed] = useState(0);
   const config = formsContent[formKey];
   const fields = (config as { fields: Field[] }).fields;
 
@@ -31,6 +45,9 @@ export function LeadForm({ formKey, intent }: { formKey: "advisory" | "speaking"
         body: JSON.stringify(payload),
       });
       setStatus("success");
+      if (redirectType) {
+        router.push(`/thanks?type=${redirectType}`);
+      }
     } catch (error) {
       console.error(error);
       setStatus("error");
@@ -39,15 +56,30 @@ export function LeadForm({ formKey, intent }: { formKey: "advisory" | "speaking"
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6 text-white">
-        <p className="text-lg font-semibold">Thank you</p>
-        <p className="text-white/70">{formsContent.thankYou}</p>
+      <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6 text-white" id={anchorId}>
+        <p className="text-lg font-semibold">Thanks — we’ll get back to you shortly.</p>
+        <p className="text-white/70">If this is time-sensitive, please use the scheduling link.</p>
+        <Button
+          className="mt-4"
+          variant="secondary"
+          onClick={() => {
+            setStatus("idle");
+            setFormKeyed((k) => k + 1);
+          }}
+        >
+          Submit another request
+        </Button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-white/10 bg-ink-900/60 p-6">
+    <form
+      key={formKeyed}
+      onSubmit={handleSubmit}
+      className="space-y-4 rounded-2xl border border-white/10 bg-ink-900/60 p-6"
+      id={anchorId}
+    >
       <div className="space-y-4">
         {fields.map((field) => (
           <div key={field.name} className="space-y-2">

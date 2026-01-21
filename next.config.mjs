@@ -6,9 +6,7 @@ const withMDX = createMDX({
 
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "mdx"],
-  experimental: {
-    typedRoutes: true,
-  },
+  typedRoutes: true,
   images: {
     remotePatterns: [
       {

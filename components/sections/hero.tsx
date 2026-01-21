@@ -7,13 +7,13 @@ type HeroProps = {
   title: string;
   subtitle: string;
   description?: string;
-  ctas: { label: string; href: string; variant?: "primary" | "secondary" | "ghost" }[];
+  ctas: { label: string; href: string; variant?: "primary" | "secondary" | "ghost" | "subtle" | string }[];
   credibility?: string;
 };
 
 export function Hero({ eyebrow, title, subtitle, description, ctas, credibility }: HeroProps) {
   return (
-    <section className="relative overflow-hidden px-6 py-16 md:py-24">
+    <section className="relative overflow-hidden px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -27,7 +27,13 @@ export function Hero({ eyebrow, title, subtitle, description, ctas, credibility 
           {description && <p className="max-w-3xl text-lg text-white/70">{description}</p>}
           <div className="flex flex-wrap gap-3">
             {ctas.map((cta) => (
-              <LinkButton key={cta.href} href={cta.href} variant={cta.variant ?? "primary"} size="lg">
+              <LinkButton
+                key={cta.href}
+                href={cta.href}
+                variant={cta.variant ?? "primary"}
+                size="lg"
+                className="w-full sm:w-auto"
+              >
                 {cta.label}
               </LinkButton>
             ))}
