@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --border-color: rgba(34, 43, 69, 0.12);
+}
+
+body {
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0b1020;
+  color: #e8ecf4;
+}
+
+a {
+  color: inherit;
+}
+
+.glass {
+  @apply bg-white/5 border border-white/10 shadow-soft backdrop-blur-md;
+}
+
+.card {
+  @apply glass rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-xl;
+}
+
+.prose-dark {
+  @apply prose prose-lg prose-invert max-w-none prose-headings:text-white prose-a:text-accent-300;
+}
+
+.gradient-border {
+  border: 1px solid transparent;
+  background: linear-gradient(#0b1020, #0b1020) padding-box,
+    linear-gradient(135deg, rgba(79, 167, 255, 0.7), rgba(152, 205, 255, 0.25)) border-box;
+}

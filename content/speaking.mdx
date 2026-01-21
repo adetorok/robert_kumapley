@@ -1,0 +1,13 @@
+import { speakingContent } from "./content";
+
+<div className="prose-dark">
+  <p>{speakingContent.description}</p>
+  <ul>
+    {speakingContent.topics.map((topic) => (
+      <li key={topic}>{topic}</li>
+    ))}
+  </ul>
+  <p>
+    Flagship: {speakingContent.flagshipTalk.title} — {speakingContent.flagshipTalk.timing}
+  </p>
+</div>

@@ -1,0 +1,14 @@
+import { resourcesContent } from "./content";
+
+<div className="prose-dark">
+  <p>Featured resources and verified links:</p>
+  <ul>
+    {resourcesContent.featured.map((item) => (
+      <li key={item.href}>
+        <a href={item.href} target="_blank" rel="noreferrer">
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>

@@ -1,0 +1,12 @@
+import { nonprofitContent } from "./content";
+
+<div className="prose-dark">
+  <p>{nonprofitContent.mygoal.subtitle}</p>
+  <p>{nonprofitContent.mygoal.body}</p>
+  <ul>
+    {nonprofitContent.mygoal.ctas.map((cta) => (
+      <li key={cta.href}>{cta.label}: {cta.href}</li>
+    ))}
+  </ul>
+  <p>{nonprofitContent.haven.body}</p>
+</div>

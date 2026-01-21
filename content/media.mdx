@@ -1,0 +1,14 @@
+import { mediaContent } from "./content";
+
+<div className="prose-dark">
+  <p>Featured media highlights:</p>
+  <ul>
+    {mediaContent.links.map((link) => (
+      <li key={link.href}>
+        <a href={link.href} target="_blank" rel="noreferrer">
+          {link.title}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
