@@ -17,8 +17,8 @@ export default function ContactPage() {
         title="Contact"
         subtitle="For speaking, advisory engagements, partnerships, or mentorship inquiries."
         ctas={[
-          { label: "Scheduler", href: process.env.NEXT_PUBLIC_SCHEDULER_URL || "/services#inquiry", variant: "secondary" },
-          { label: "Book a Talk", href: "/speaking#booking", variant: "ghost" },
+          { label: "Scheduler", href: process.env.NEXT_PUBLIC_SCHEDULER_URL || "/hire#advisory-form", variant: "secondary" },
+          { label: "Book a Talk", href: "/hire#speaking-form", variant: "ghost" },
         ]}
       />
 
@@ -43,7 +43,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-6xl space-y-4 rounded-2xl border border-white/10 bg-white/5 p-8 shadow-soft">
           <h3 className="text-xl font-semibold text-white">Guided flow</h3>
           <p className="text-white/70">Prefer a quick guided path? Use the multi-step flow for routing and consent.</p>
-          <MultiStepForm />
+          <MultiStepForm anchorId="contact-form" />
         </div>
       </section>
     </div>

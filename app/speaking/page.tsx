@@ -20,7 +20,7 @@ export default function SpeakingPage() {
           title={speakingContent.title}
           subtitle={speakingContent.description}
           ctas={[
-            { label: "Book a Talk", href: "#booking", variant: "primary" },
+            { label: "Book a Talk", href: "#speaking-form", variant: "primary" },
             { label: "Download Speaker Kit", href: "/speaker-kit", variant: "secondary" },
           ]}
         />
@@ -58,7 +58,7 @@ export default function SpeakingPage() {
                   <li key={item}>• {item}</li>
                 ))}
               </ul>
-              <LinkButton href="#booking" variant="secondary" className="mt-3">
+              <LinkButton href="#speaking-form" variant="secondary" className="mt-3">
                 Invite Robert to speak
               </LinkButton>
             </div>
@@ -76,7 +76,7 @@ export default function SpeakingPage() {
                 <p className="text-sm text-white/60">Ideal audience: {pkg.audience}</p>
                 <p className="mt-2 text-sm text-white/75">What’s included: {pkg.includes.join(", ")}.</p>
                 <p className="text-sm text-white/75">Outcomes: {pkg.outcomes.join(", ")}.</p>
-                <LinkButton href="#booking" variant="secondary" className="mt-3">
+                <LinkButton href="#speaking-form" variant="secondary" className="mt-3">
                   Request availability
                 </LinkButton>
               </div>
@@ -91,7 +91,7 @@ export default function SpeakingPage() {
         </div>
       </section>
 
-      <section id="booking" className="px-6 pb-16">
+      <section id="speaking-form" className="px-6 pb-16">
         <div className="mx-auto grid max-w-6xl gap-8 rounded-2xl border border-white/10 bg-white/5 p-8 shadow-soft lg:grid-cols-2">
           <div>
             <h3 className="text-2xl font-semibold text-white">Book Robert</h3>

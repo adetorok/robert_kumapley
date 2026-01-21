@@ -1,5 +1,6 @@
 "use client";
 import { FormEvent, useState } from "react";
+import type { Route } from "next";
 import { formsContent } from "@/content/content";
 import { Button } from "@/components/ui/button";
 
@@ -46,7 +47,7 @@ export function LeadForm({
       });
       setStatus("success");
       if (redirectType) {
-        router.push(`/thanks?type=${redirectType}`);
+        router.push(`/thanks?type=${redirectType}` as Route);
       }
     } catch (error) {
       console.error(error);
@@ -124,7 +125,7 @@ export function LeadForm({
         ))}
       </div>
       <p className="text-xs text-white/50">{formsContent.privacyNotice}</p>
-      <Button type="submit" disabled={status === "submitting"}>
+      <Button type="submit" disabled={status === "submitting"} className="w-full sm:w-auto">
         {status === "submitting" ? "Submitting..." : "Submit"}
       </Button>
       {status === "error" && <p className="text-sm text-red-300">Something went wrong. Please try again.</p>}

@@ -18,7 +18,7 @@ export default function SpeakerKitPage() {
         subtitle="Download bios, headshots, topics, and booking details."
         ctas={[
           { label: "Download 1-page PDF", href: "/api/speaker-sheet", variant: "primary" },
-          { label: "Book a Talk", href: "/speaking#booking", variant: "secondary" },
+          { label: "Book a Talk", href: "/hire#speaking-form", variant: "secondary" },
         ]}
       />
 

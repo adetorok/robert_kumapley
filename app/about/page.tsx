@@ -34,7 +34,8 @@ export default function AboutPage() {
               alt="Robert Kumapley headshot"
               width={640}
               height={640}
-              className="rounded-xl border border-white/10 object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="rounded-xl border border-white/10 object-cover w-full h-auto"
             />
           </div>
           <div className="space-y-3">
@@ -45,7 +46,8 @@ export default function AboutPage() {
               alt="Robert Kumapley full length"
               width={640}
               height={960}
-              className="rounded-xl border border-white/10 object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="rounded-xl border border-white/10 object-cover w-full h-auto"
             />
           </div>
         </div>

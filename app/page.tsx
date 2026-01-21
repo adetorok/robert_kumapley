@@ -47,13 +47,13 @@ export default function HomePage() {
           <h2 className="text-2xl font-semibold text-white">What I Do</h2>
         </div>
       </section>
-      <CardGrid cards={homeContent.whatIDo} columns={3} />
+      <CardGrid cards={homeContent.whatIDo} />
 
       <FeaturedMedia items={homeContent.featured} />
 
       <BioSection paragraphs={homeContent.shortBio} />
 
-      <section className="px-6 py-12 md:py-16">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
           {homeContent.workWith.map((item) => (
             <div key={item.title} className="card">
@@ -84,7 +84,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="work-with-robert" className="px-6 py-12 md:py-16">
+      <section id="work-with-robert" className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
           <div>
             <h3 className="text-2xl font-semibold text-white">Work with Robert</h3>
@@ -92,22 +92,22 @@ export default function HomePage() {
               Clear pathways for advisory, speaking, mentorship, and workshops. Use the guided flow or choose a dedicated form.
             </p>
             <div className="mt-4 space-y-3">
-              <LinkButton href="/services#inquiry" variant="secondary">
+              <LinkButton href="/hire#advisory-form" variant="secondary">
                 Request Advisory Consult
               </LinkButton>
-              <LinkButton href="/speaking#booking" variant="ghost">
+              <LinkButton href="/hire#speaking-form" variant="ghost">
                 Book a Talk
               </LinkButton>
-              <LinkButton href="/contact#mentorship" variant="ghost">
+              <LinkButton href="/hire#mentorship-form" variant="ghost">
                 Apply for Mentorship
               </LinkButton>
             </div>
           </div>
-          <MultiStepForm />
+          <MultiStepForm anchorId="home-form" />
         </div>
       </section>
 
-      <section className="px-6 pb-16">
+      <section className="px-4 sm:px-6 lg:px-8 pb-16">
         <div className="mx-auto max-w-6xl rounded-2xl border border-white/10 bg-white/5 p-8 shadow-soft">
           <h3 className="text-xl font-semibold text-white">Direct forms</h3>
           <ContactRouterForm />

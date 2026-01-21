@@ -104,7 +104,7 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                 </div>
-                <LinkButton href="#inquiry" variant="secondary" className="mt-4">
+                <LinkButton href="/hire#advisory-form" variant="secondary" className="mt-4">
                   Request availability
                 </LinkButton>
               </div>
@@ -121,7 +121,7 @@ export default function ServicesPage() {
               Select your path: Advisory, Speaking, Mentorship, or Workshop. This form routes directly to the right inbox.
             </p>
           </div>
-          <MultiStepForm />
+          <MultiStepForm anchorId="advisory-form" />
         </div>
       </section>
     </div>

@@ -16,23 +16,28 @@ export default function HirePage() {
         title="Hire Robert"
         subtitle="Multi-step inquiry with routing for advisory, speaking, mentorship, and workshops."
         ctas={[
-          { label: "Start inquiry", href: "#form", variant: "primary" },
-          { label: "Book a Talk", href: "/speaking#booking", variant: "secondary" },
+          { label: "Start inquiry", href: "#advisory-form", variant: "primary" },
+          { label: "Book a Talk", href: "#speaking-form", variant: "secondary" },
         ]}
       />
 
-      <section id="form" className="px-6 pb-16">
+      <section className="px-4 sm:px-6 lg:px-8 pb-16">
         <div className="mx-auto grid max-w-6xl gap-6 rounded-2xl border border-white/10 bg-white/5 p-8 shadow-soft lg:grid-cols-2">
           <div className="space-y-3">
+            <div className="flex flex-col gap-2">
+              <div id="advisory-form" />
+              <div id="speaking-form" />
+              <div id="mentorship-form" />
+            </div>
             <h3 className="text-xl font-semibold text-white">Clear routing</h3>
             <p className="text-white/70">
               The form routes to speaking, advisory, mentorship, or default inboxes based on your selection.
             </p>
-            <LinkButton href={process.env.NEXT_PUBLIC_SCHEDULER_URL || "/contact"} variant="secondary">
+            <LinkButton href={process.env.NEXT_PUBLIC_SCHEDULER_URL || "/contact"} variant="secondary" className="w-full sm:w-auto">
               {process.env.NEXT_PUBLIC_SCHEDULER_URL ? "Schedule a call" : "Add scheduler URL via env"}
             </LinkButton>
           </div>
-          <MultiStepForm />
+          <MultiStepForm anchorId="advisory-form" />
         </div>
       </section>
     </div>

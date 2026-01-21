@@ -8,6 +8,7 @@ import { brand } from "@/content/content";
 import { Analytics } from "@/components/analytics";
 import { Schema } from "@/components/schema";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", display: "swap" });
@@ -32,7 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${space.variable}`}>
       <body className="min-h-screen bg-gradient-to-b from-[#0b1020] via-[#0d1227] to-[#0b1020] text-white overflow-x-hidden">
         <Header />
-        <ScrollToTop />
+        <Suspense fallback={null}>
+          <ScrollToTop />
+        </Suspense>
         <main className="pb-16 px-4 sm:px-6 lg:px-8">{children}</main>
         <Footer />
         <StickyHire />

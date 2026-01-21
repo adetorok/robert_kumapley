@@ -1,10 +1,11 @@
 "use client";
 import { useMemo, useState } from "react";
+import type { Route } from "next";
 import { formsContent } from "@/content/content";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-export function MultiStepForm() {
+export function MultiStepForm({ anchorId = "contact-form" }: { anchorId?: string }) {
   const steps = formsContent.multistep.steps;
   const [current, setCurrent] = useState(0);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -31,7 +32,7 @@ export function MultiStepForm() {
       // Optional redirect based on intent if provided.
       const intent = (data.intent as string | undefined)?.toLowerCase();
       if (intent === "advisory" || intent === "speaking" || intent === "mentorship") {
-        router.push(`/thanks?type=${intent}`);
+        router.push(`/thanks?type=${intent}` as Route);
       }
     } catch (error) {
       console.error(error);
@@ -62,7 +63,7 @@ export function MultiStepForm() {
   const step = steps[current];
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6 space-y-4" id="contact-form">
+    <div className="rounded-2xl border border-white/10 bg-ink-900/60 p-6 space-y-4" id={anchorId}>
       <div className="h-1.5 w-full rounded-full bg-white/10">
         <div className="h-full rounded-full bg-accent-500" style={{ width: `${progress}%` }} />
       </div>
@@ -144,13 +145,20 @@ export function MultiStepForm() {
       </div>
       <p className="text-xs text-white/50">{formsContent.privacyNotice}</p>
       <div className="flex items-center justify-between">
-        <Button variant="ghost" onClick={() => setCurrent((c) => Math.max(0, c - 1))} disabled={current === 0}>
+        <Button
+          variant="ghost"
+          onClick={() => setCurrent((c) => Math.max(0, c - 1))}
+          disabled={current === 0}
+          className="w-full sm:w-auto"
+        >
           Back
         </Button>
         {!isLast ? (
-          <Button onClick={() => setCurrent((c) => Math.min(steps.length - 1, c + 1))}>Next</Button>
+          <Button onClick={() => setCurrent((c) => Math.min(steps.length - 1, c + 1))} className="w-full sm:w-auto">
+            Next
+          </Button>
         ) : (
-          <Button onClick={handleSubmit} disabled={status === "submitting"}>
+          <Button onClick={handleSubmit} disabled={status === "submitting"} className="w-full sm:w-auto">
             {status === "submitting" ? "Submitting..." : "Submit"}
           </Button>
         )}

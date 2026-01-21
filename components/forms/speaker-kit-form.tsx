@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { formsContent } from "@/content/content";
 
 import { useRouter } from "next/navigation";
+import type { Route } from "next";
 
 export function SpeakerKitForm({ anchorId, redirectType }: { anchorId?: string; redirectType?: string }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -31,7 +32,7 @@ export function SpeakerKitForm({ anchorId, redirectType }: { anchorId?: string; 
       });
       setStatus("success");
       if (redirectType) {
-        router.push(`/thanks?type=${redirectType}`);
+        router.push(`/thanks?type=${redirectType}` as Route);
       }
     } catch (error) {
       console.error(error);
@@ -91,7 +92,7 @@ export function SpeakerKitForm({ anchorId, redirectType }: { anchorId?: string; 
         />
       </div>
       <p className="text-xs text-white/50">{formsContent.privacyNotice}</p>
-      <Button type="submit" disabled={status === "submitting"}>
+      <Button type="submit" disabled={status === "submitting"} className="w-full sm:w-auto">
         {status === "submitting" ? "Submitting..." : "Request speaker kit"}
       </Button>
       {status === "error" && <p className="text-sm text-red-300">Something went wrong. Please try again.</p>}

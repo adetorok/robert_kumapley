@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 import { navLinks, ctaLinks, brand } from "@/content/content";

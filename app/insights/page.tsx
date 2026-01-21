@@ -15,7 +15,7 @@ export default function InsightsPage() {
         eyebrow="Insights"
         title="Thought leadership"
         subtitle="Articles, frameworks, and POVs on enterprise asset management, data standards, and transformation."
-        ctas={[{ label: "Hire Robert", href: "/services#inquiry", variant: "secondary" }]}
+        ctas={[{ label: "Hire Robert", href: "/hire#advisory-form", variant: "secondary" }]}
       />
 
       <section className="px-6 pb-16">
