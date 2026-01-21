@@ -25,10 +25,10 @@ export const navLinks: { href: Route; label: string }[] = [
 ];
 
 export const ctaLinks = {
-  hire: { label: "Hire Robert", href: "/hire#advisory-form" as Route },
-  bookTalk: { label: "Book a Talk", href: "/hire#speaking-form" as Route },
-  requestConsult: { label: "Request Advisory Consult", href: "/hire#advisory-form" as Route },
-  applyMentorship: { label: "Apply for Mentorship", href: "/hire#mentorship-form" as Route },
+  hire: { label: "Work With Robert", href: "/hire" as Route },
+  bookTalk: { label: "Book a Call", href: "/hire?type=speaking" as Route },
+  requestConsult: { label: "Request an Engagement", href: "/hire?type=advisory" as Route },
+  applyMentorship: { label: "Start an Inquiry", href: "/hire?type=mentorship" as Route },
 };
 
 export const trustTags = [
@@ -44,9 +44,9 @@ export const homeContent = {
     subtitle:
       "Enterprise transformation • EAM/CMMS (Maximo) • Data governance • Lifecycle optimization • Sustainability • Digital enablement",
     ctas: [
-      { label: "Request Advisory Consult", href: "/hire#advisory-form", variant: "primary" as const },
-      { label: "Book a Talk", href: "/hire#speaking-form", variant: "secondary" as const },
-      { label: "Apply for Mentorship", href: "/hire#mentorship-form", variant: "ghost" as const },
+      { label: "Work With Robert", href: "/hire", variant: "primary" as const },
+      { label: "Book a Talk", href: "/hire?type=speaking", variant: "secondary" as const },
+      { label: "Speaker Kit", href: "/speaker-kit", variant: "ghost" as const },
     ],
     credibilityStrip: "Public sector transformation • EAM/CMMS • Data governance • Digital twins • Sustainability",
   },

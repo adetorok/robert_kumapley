@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   description: "Guided multi-step inquiry for advisory, speaking, mentorship, and workshops.",
 };
 
-export default function HirePage() {
+export default function HirePage({ searchParams }: { searchParams?: { type?: string } }) {
+  const defaultIntent = searchParams?.type
+    ? capitalize(searchParams.type)
+    : undefined;
+
   return (
     <div className="space-y-10">
       <Hero
@@ -37,9 +41,19 @@ export default function HirePage() {
               {process.env.NEXT_PUBLIC_SCHEDULER_URL ? "Schedule a call" : "Add scheduler URL via env"}
             </LinkButton>
           </div>
-          <MultiStepForm anchorId="advisory-form" />
+          <MultiStepForm anchorId="advisory-form" defaultIntent={defaultIntent} />
         </div>
       </section>
     </div>
   );
+}
+
+function capitalize(v?: string) {
+  if (!v) return undefined;
+  const lower = v.toLowerCase();
+  if (lower === "advisory") return "Advisory";
+  if (lower === "speaking") return "Speaking";
+  if (lower === "mentorship") return "Mentorship";
+  if (lower === "workshop") return "Workshop";
+  return lower.charAt(0).toUpperCase() + lower.slice(1);
 }

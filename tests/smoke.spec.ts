@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 const routes: Array<{ path: string; heading: string }> = [
   { path: "/", heading: "Robert (Kwasi) Kumapley, PE, MASCE, LEED AP" },
-  { path: "/about", heading: "About Robert" },
+  { path: "/about", heading: "Executive Summary" },
   { path: "/services", heading: "Services" },
   { path: "/speaking", heading: "Speaking" },
   { path: "/case-highlights", heading: "Confidentiality-safe outcomes" },
@@ -37,7 +37,7 @@ test("Lead form submits in mock mode", async ({ page }) => {
   await form.getByLabel("Role/Title").fill("QA Engineer");
   await form.getByLabel("Email").fill("qa@example.com");
   await form.getByLabel("Engagement type").selectOption("Assessment");
-  await form.getByLabel("Key challenge").fill("Testing lead routing.");
+  await form.getByLabel("Key challenge").selectOption({ label: "Data standards / governance" });
   await form.getByLabel("Timeline").selectOption("30–60 days");
   await form.getByRole("button", { name: "Submit" }).click();
 

@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
-import { navLinks, ctaLinks, brand } from "@/content/content";
+import { ctaLinks, brand } from "@/content/content";
 import { Logo } from "@/components/logo";
 import { LinkButton } from "@/components/ui/button";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [openWork, setOpenWork] = useState(false);
+  const [openMore, setOpenMore] = useState(false);
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -37,11 +39,69 @@ export function Header() {
           </div>
         </Link>
         <nav className="hidden items-center gap-5 text-sm font-medium text-white/80 md:flex">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-white">
-              {link.label}
-            </Link>
-          ))}
+          <div className="relative">
+            <button
+              className="flex items-center gap-1 text-white/80 hover:text-white"
+              onMouseEnter={() => setOpenWork(true)}
+              onMouseLeave={() => setOpenWork(false)}
+              aria-expanded={openWork}
+            >
+              Work With Robert
+            </button>
+            {openWork && (
+              <div
+                className="absolute left-0 mt-2 w-52 rounded-xl border border-white/10 bg-[#0b1020]/95 p-3 shadow-soft"
+                onMouseEnter={() => setOpenWork(true)}
+                onMouseLeave={() => setOpenWork(false)}
+              >
+                {[
+                  { label: "Advisory", href: "/hire?type=advisory" },
+                  { label: "Speaking / Talks", href: "/hire?type=speaking" },
+                  { label: "Mentorship", href: "/hire?type=mentorship" },
+                  { label: "Workshops", href: "/hire?type=workshop" },
+                ].map((item) => (
+                  <Link key={item.href} href={item.href} className="block rounded-lg px-3 py-2 hover:bg-white/10 text-white/80 hover:text-white">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          <Link href="/about" className="hover:text-white">
+            About
+          </Link>
+          <div className="relative">
+            <button
+              className="flex items-center gap-1 text-white/80 hover:text-white"
+              onMouseEnter={() => setOpenMore(true)}
+              onMouseLeave={() => setOpenMore(false)}
+              aria-expanded={openMore}
+            >
+              More
+            </button>
+            {openMore && (
+              <div
+                className="absolute left-0 mt-2 w-56 rounded-xl border border-white/10 bg-[#0b1020]/95 p-3 shadow-soft"
+                onMouseEnter={() => setOpenMore(true)}
+                onMouseLeave={() => setOpenMore(false)}
+              >
+                {[
+                  { label: "Case Highlights", href: "/case-highlights" },
+                  { label: "Media", href: "/media" },
+                  { label: "Resources", href: "/resources" },
+                  { label: "Insights", href: "/insights" },
+                  { label: "MYGOAL", href: "/mygoal" },
+                ].map((item) => (
+                  <Link key={item.href} href={item.href} className="block rounded-lg px-3 py-2 hover:bg-white/10 text-white/80 hover:text-white">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          <Link href="/contact" className="hover:text-white">
+            Contact
+          </Link>
         </nav>
         <div className="hidden items-center gap-2 md:flex">
           <LinkButton variant="secondary" size="sm" href={ctaLinks.bookTalk.href}>
@@ -84,24 +144,60 @@ export function Header() {
                 ✕
               </button>
             </div>
-            <div className="grid gap-3 text-white/80">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="rounded-lg px-3 py-2 hover:bg-white/10"
-                  onClick={close}
-                >
-                  {link.label}
+            <div className="grid gap-4 text-white/80">
+              <div className="space-y-2">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/60">Work With Robert</p>
+                {[
+                  { label: "Advisory", href: "/hire?type=advisory" },
+                  { label: "Speaking / Talks", href: "/hire?type=speaking" },
+                  { label: "Mentorship", href: "/hire?type=mentorship" },
+                  { label: "Workshops", href: "/hire?type=workshop" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-lg px-3 py-2 hover:bg-white/10"
+                    onClick={close}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/60">More</p>
+                {[
+                  { label: "Case Highlights", href: "/case-highlights" },
+                  { label: "Media", href: "/media" },
+                  { label: "Resources", href: "/resources" },
+                  { label: "Insights", href: "/insights" },
+                  { label: "MYGOAL", href: "/mygoal" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-lg px-3 py-2 hover:bg-white/10"
+                    onClick={close}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/60">Primary</p>
+                <Link href="/about" className="block rounded-lg px-3 py-2 hover:bg-white/10" onClick={close}>
+                  About
                 </Link>
-              ))}
+                <Link href="/contact" className="block rounded-lg px-3 py-2 hover:bg-white/10" onClick={close}>
+                  Contact
+                </Link>
+              </div>
             </div>
             <div className="grid gap-3">
-              <LinkButton href={ctaLinks.hire.href} variant="primary" className="w-full">
-                {ctaLinks.hire.label}
+              <LinkButton href="/hire" variant="primary" className="w-full">
+                Work With Robert
               </LinkButton>
-              <LinkButton href={ctaLinks.bookTalk.href} variant="secondary" className="w-full">
-                {ctaLinks.bookTalk.label}
+              <LinkButton href="/hire?type=speaking" variant="secondary" className="w-full">
+                Book a Call
               </LinkButton>
             </div>
           </div>
